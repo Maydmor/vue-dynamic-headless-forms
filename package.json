@@ -12,8 +12,10 @@
   "exports": {
     ".": {
       "import": "./dist/vue-dynamic-headless-forms.js",
-      "require": "./dist/vue-dynamic-headless-forms.umd.js"
+      "require": "./dist/vue-dynamic-headless-forms.umd.js",
+      "types": "./dist/index.d.ts"
     }
+    
   },
   "types": "./dist/index.d.ts",
   "scripts": {
