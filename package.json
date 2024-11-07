@@ -4,8 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "files": [
-    "dist",
-    "src/components"
+    "dist"
   ],
   "main": "./dist/vue-dynamic-headless-forms.umd.cjs",
   "module": "./dist/vue-dynamic-headless-forms.js",
@@ -13,10 +12,10 @@
     ".": {
       "import": "./dist/vue-dynamic-headless-forms.js",
       "require": "./dist/vue-dynamic-headless-forms.umd.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/src/index.d.ts"
     }
   },
-  "types": "./dist/index.d.ts",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
