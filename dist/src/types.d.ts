@@ -15,6 +15,7 @@ export interface RequiredIfRule extends ValidationRule {
 }
 export interface RequiredUnlessRule extends ValidationRule {
     name: 'required_unless';
+    otherFieldName: string;
 }
 export interface SameAsRule extends ValidationRule {
     name: 'same_as';
@@ -49,5 +50,8 @@ export interface FormField {
     rendered?: boolean;
     renderCondition?: RenderCondition;
     validationRules?: Array<ValidationRule>;
+    properties?: Array<FormField>;
+    itemDefinition?: FormField;
 }
 export {};
+//# sourceMappingURL=types.d.ts.map
