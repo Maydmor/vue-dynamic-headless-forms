@@ -11,8 +11,8 @@
   "module": "./dist/vue-dynamic-headless-forms.js",
   "exports": {
     ".": {
-      "import": "./vue-dynamic-headless-forms.js",
-      "require": "./vue-dynamic-headless-forms.umd.js"
+      "import": "./dist/vue-dynamic-headless-forms.js",
+      "require": "./dist/vue-dynamic-headless-forms.umd.js"
     }
   },
   "types": "./dist/index.d.ts",
