@@ -18,7 +18,9 @@ export interface RequiredIfRule extends ValidationRule {
 }
 
 export interface RequiredUnlessRule extends ValidationRule {
-    name: 'required_unless'
+    name: 'required_unless',
+    otherFieldName: string
+
 }
 
 export interface SameAsRule extends ValidationRule {
@@ -59,5 +61,7 @@ export interface FormField {
     default?: any,
     rendered?: boolean,
     renderCondition?: RenderCondition,
-    validationRules?: Array<ValidationRule>
+    validationRules?: Array<ValidationRule>,
+    properties?: Array<FormField>
+    itemDefinition?: FormField
 }
