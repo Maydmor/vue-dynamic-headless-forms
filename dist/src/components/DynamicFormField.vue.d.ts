@@ -4,6 +4,7 @@ declare let __VLS_typeProps: {
     context: Record<string, any>;
 };
 declare function setModelValue(value: any): void;
+declare function getDefaultValue(fieldInfo: FormField): any;
 type __VLS_PublicProps = {
     modelValue?: any;
 } & typeof __VLS_typeProps;
@@ -12,6 +13,7 @@ declare function __VLS_template(): {
         field: FormField;
         modelValue: unknown;
         setModelValue: typeof setModelValue;
+        getDefaultValue: typeof getDefaultValue;
         errorMessages: (string | import('vue').Ref<string, string>)[];
     }) => any>>;
     refs: {};
