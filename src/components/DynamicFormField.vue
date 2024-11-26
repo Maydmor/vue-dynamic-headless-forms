@@ -1,12 +1,12 @@
 <template>
    
-    <slot :name="field.type" :field="field" :model-value="model" :set-model-value="setModelValue" :error-messages="v.$error ? v.$errors.map(error => error.$message) : []">
+    <slot :name="field.type" :field="field" :model-value="model" :set-model-value="setModelValue" :get-default-value="getDefaultValue" :error-messages="v.$error ? v.$errors.map(error => error.$message) : []">
     </slot>
 
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, PropType, toRefs } from 'vue';
+import { computed, onMounted, toRefs } from 'vue';
 import { FormField, GreaterThanRule, LessThanRule, MaxLengthRule, MinLengthRule, RequiredIfRule, RequiredUnlessRule, SameAsRule } from '../types';
 import { helpers, required, requiredIf, requiredUnless, minLength, maxLength, minValue, maxValue, sameAs } from '@vuelidate/validators';
 import useVuelidate, { ValidationRule } from '@vuelidate/core';
@@ -65,6 +65,20 @@ const rules = computed(() => {
     }
 
 })
+
+function getDefaultValue(fieldInfo: FormField) {
+    if(field.value.type === 'list') {
+        return getDefaultValue(field.value.itemDefinition!)
+    }
+    if(field.value.type === 'object') {
+        let defaultValue: Record<string, any> = {}
+        for(const property of field.value.properties ||[]) {
+            defaultValue[property.name] = getDefaultValue(property);
+        }
+        return defaultValue;
+    }
+    return field.value.default;
+}
 
 const v = useVuelidate(rules, state);
 
