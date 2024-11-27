@@ -85,7 +85,7 @@ function getDefaultValue(fieldInfo: FormField) {
 const v = useVuelidate(rules, state);
 
 onMounted(() => {
-    if(field.value.default) {
+    if(field.value.default && !model.value) {
         model.value = field.value.default;
     }
 
