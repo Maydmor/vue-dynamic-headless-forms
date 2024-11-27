@@ -53,7 +53,7 @@ export interface FormField {
     rendered?: boolean;
     renderCondition?: RenderCondition;
     validationRules?: Array<ValidationRule>;
-    properties?: Array<FormField>;
+    itemProperties?: Array<FormField>;
     itemDefinition?: FormField;
 }
 export {};

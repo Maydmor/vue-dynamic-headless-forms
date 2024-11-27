@@ -31,7 +31,7 @@ const U = /* @__PURE__ */ p({
         return [u(r.itemDefinition)];
       if (r.type === "object") {
         let e = {};
-        for (const s of r.properties || [])
+        for (const s of r.itemProperties || [])
           e[s.name] = u(s);
         return e;
       }
