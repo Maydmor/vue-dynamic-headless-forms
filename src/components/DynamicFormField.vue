@@ -69,29 +69,40 @@ const rules = computed(() => {
 })
 
 function getDefaultValue(fieldInfo: FormField) {
-    if(field.value.type === 'list') {
+    if(fieldInfo.type === 'list') {
+        // returns the items default value
         return getDefaultValue(fieldInfo.itemDefinition!)
     }
-    if(field.value.type === 'object') {
+    if(fieldInfo.type === 'object') {
+        // returns the objects default value
         let defaultValue: Record<string, any> = {}
         for(const property of fieldInfo.properties ||[]) {
             defaultValue[property.name] = getDefaultValue(property);
         }
         return defaultValue;
     }
+    //return default value for field
     return fieldInfo.default;
 }
+
+
 
 const v = useVuelidate(rules, state);
 
 onMounted(() => {
-    if(field.value.type === 'list' && (model.value === null || model.value === undefined) ) {
-        model.value = []
-    }
-
     if(field.value.default && (model.value === null || model.value === undefined)) {
+        // use default value defined in default
+        model.value = field.value.default;
+    }
+    else if (field.value.type === 'object' && (model.value === null || model.value === undefined)) {
+        // prefill object by getDefaultValue
         model.value = getDefaultValue(field.value);
     }
+    else if (field.value.type === 'list' && (model.value === null || model.value === undefined)) {
+        // set default to []
+        model.value = [];
+    }
+    
 
 })
 </script>
