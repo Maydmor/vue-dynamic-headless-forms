@@ -5,7 +5,10 @@ interface RenderCondition {
 
 export interface ValidationRule {
     name: string,
-    errorText: string
+    errorText: string,
+    otherFieldName?: string,
+    length?: number,
+    value?: number
 }
 
 export interface RequiredRule extends ValidationRule {

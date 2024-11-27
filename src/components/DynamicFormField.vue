@@ -37,16 +37,16 @@ const validationRules = computed(() => {
             rules.requiredUnless = helpers.withMessage(validationRule.errorText, requiredUnless(!!context.value[(validationRule as RequiredUnlessRule).otherFieldName]))
         }
         if(validationRule.name == 'min_length') {
-            rules.minLength = helpers.withMessage(validationRule.errorText, minLength(context.value[(validationRule as MinLengthRule).length]))
+            rules.minLength = helpers.withMessage(validationRule.errorText, minLength(validationRule.length!))
         }
         if(validationRule.name == 'max_length') {
-            rules.maxLength = helpers.withMessage(validationRule.errorText, maxLength(context.value[(validationRule as MaxLengthRule).length]))
+            rules.maxLength = helpers.withMessage(validationRule.errorText, maxLength(validationRule.length!))
         }
         if(validationRule.name == 'less_than') {
-            rules.lessThan = helpers.withMessage(validationRule.errorText, maxValue(context.value[(validationRule as GreaterThanRule).value]))
+            rules.lessThan = helpers.withMessage(validationRule.errorText, maxValue(validationRule.value!))
         }
         if(validationRule.name == 'greater_than') {
-            rules.greaterThan = helpers.withMessage(validationRule.errorText, minValue(context.value[(validationRule as LessThanRule).value]))
+            rules.greaterThan = helpers.withMessage(validationRule.errorText, minValue(validationRule.value!))
         }
         if(validationRule.name == 'same_as') {
             rules.sameAs = helpers.withMessage(validationRule.errorText, sameAs(context.value[(validationRule as SameAsRule).otherFieldName]))
