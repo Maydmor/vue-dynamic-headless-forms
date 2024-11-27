@@ -65,6 +65,8 @@ export interface FormField {
     rendered?: boolean,
     renderCondition?: RenderCondition,
     validationRules?: Array<ValidationRule>,
-    itemProperties?: Array<FormField>
-    itemDefinition?: FormField
+    itemProperties?: Array<FormField>,
+    itemDefinition?: FormField,
+    choices?: Array<any>
+
 }
