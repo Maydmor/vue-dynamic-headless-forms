@@ -25,6 +25,8 @@ const validationRules = computed(() => {
     const rules = {
     } as Record<string, ValidationRule|undefined>
     for(const validationRule of field.value.validationRules || []) {
+
+        console.debug(`Add validation rule: `, validationRule)
         if(validationRule.name == 'required') {
             rules.required = helpers.withMessage(validationRule.errorText, required);
         }
