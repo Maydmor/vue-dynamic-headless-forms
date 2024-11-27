@@ -76,7 +76,7 @@ function getDefaultValue(fieldInfo: FormField): any {
     if(fieldInfo.type === 'object') {
         // returns the objects default value
         let defaultValue: Record<string, any> = {}
-        for(const property of fieldInfo.properties ||[]) {
+        for(const property of fieldInfo.itemProperties ||[]) {
             defaultValue[property.name] = getDefaultValue(property);
         }
         return defaultValue;
