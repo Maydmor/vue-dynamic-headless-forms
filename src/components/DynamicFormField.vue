@@ -86,7 +86,7 @@ const v = useVuelidate(rules, state);
 
 onMounted(() => {
     if(field.value.default && (model.value === null || model.value === undefined)) {
-        model.value = field.value.default;
+        model.value = getDefaultValue(field.value);
     }
 
 })
