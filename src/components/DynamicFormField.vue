@@ -70,21 +70,25 @@ const rules = computed(() => {
 
 function getDefaultValue(fieldInfo: FormField) {
     if(field.value.type === 'list') {
-        return getDefaultValue(field.value.itemDefinition!)
+        return getDefaultValue(fieldInfo.itemDefinition!)
     }
     if(field.value.type === 'object') {
         let defaultValue: Record<string, any> = {}
-        for(const property of field.value.properties ||[]) {
+        for(const property of fieldInfo.properties ||[]) {
             defaultValue[property.name] = getDefaultValue(property);
         }
         return defaultValue;
     }
-    return field.value.default;
+    return fieldInfo.default;
 }
 
 const v = useVuelidate(rules, state);
 
 onMounted(() => {
+    if(field.value.type === 'list' && (model.value === null || model.value === undefined) ) {
+        model.value = []
+    }
+
     if(field.value.default && (model.value === null || model.value === undefined)) {
         model.value = getDefaultValue(field.value);
     }

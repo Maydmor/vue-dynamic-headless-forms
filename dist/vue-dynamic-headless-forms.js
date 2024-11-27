@@ -13,18 +13,18 @@ const U = /* @__PURE__ */ p({
   emits: ["update:modelValue"],
   setup(m) {
     const l = M(m, "modelValue"), f = m, { field: t, context: n } = T(f);
-    function h(r) {
+    function v(r) {
       l.value = r;
     }
-    const c = u(() => {
+    const h = u(() => {
       const r = {};
       for (const e of t.value.validationRules || [])
         console.debug("Add validation rule: ", e), e.name == "required" && (r.required = a.withMessage(e.errorText, q)), e.name == "required_if" && (r.requiredIf = a.withMessage(e.errorText, w(!!n.value[e.otherFieldName]))), e.name == "required_unless" && (r.requiredUnless = a.withMessage(e.errorText, F(!!n.value[e.otherFieldName]))), e.name == "min_length" && (r.minLength = a.withMessage(e.errorText, y(e.length))), e.name == "max_length" && (r.maxLength = a.withMessage(e.errorText, D(e.length))), e.name == "less_than" && (r.lessThan = a.withMessage(e.errorText, L(e.value))), e.name == "greater_than" && (r.greaterThan = a.withMessage(e.errorText, R(e.value))), e.name == "same_as" && (r.sameAs = a.withMessage(e.errorText, $(n.value[e.otherFieldName])));
       return r;
-    }), g = u(() => ({
+    }), c = u(() => ({
       model: l.value
-    })), v = u(() => ({
-      model: { ...c.value }
+    })), g = u(() => ({
+      model: { ...h.value }
     }));
     function s(r) {
       if (t.value.type === "list")
@@ -37,13 +37,13 @@ const U = /* @__PURE__ */ p({
       }
       return t.value.default;
     }
-    const d = A(v, g);
+    const d = A(g, c);
     return V(() => {
-      t.value.default && (l.value = t.value.default);
+      t.value.default && (l.value === null || l.value === void 0) && (l.value = t.value.default);
     }), (r, e) => _(r.$slots, o(t).type, {
       field: o(t),
       modelValue: l.value,
-      setModelValue: h,
+      setModelValue: v,
       getDefaultValue: s,
       errorMessages: o(d).$error ? o(d).$errors.map((i) => i.$message) : []
     });
