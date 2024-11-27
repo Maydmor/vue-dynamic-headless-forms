@@ -68,10 +68,10 @@ const rules = computed(() => {
 
 })
 
-function getDefaultValue(fieldInfo: FormField) {
+function getDefaultValue(fieldInfo: FormField): any {
     if(fieldInfo.type === 'list') {
         // returns the items default value
-        return getDefaultValue(fieldInfo.itemDefinition!)
+        return [getDefaultValue(fieldInfo.itemDefinition!)]
     }
     if(fieldInfo.type === 'object') {
         // returns the objects default value
