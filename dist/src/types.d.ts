@@ -45,7 +45,7 @@ export interface LessThanRule extends ValidationRule {
     value: number;
 }
 export interface FormField {
-    type: string;
+    typeName: string;
     name: string;
     label?: string;
     hint?: string;
@@ -55,6 +55,7 @@ export interface FormField {
     validationRules?: Array<ValidationRule>;
     itemProperties?: Array<FormField>;
     itemDefinition?: FormField;
+    choices?: Array<any>;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map
