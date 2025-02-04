@@ -57,7 +57,7 @@ export interface LessThanRule extends ValidationRule {
 }
 
 export interface FormField {
-    typeName: string,
+    fieldType: string,
     name: string,
     label?: string
     hint?: string,

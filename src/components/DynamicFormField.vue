@@ -1,6 +1,6 @@
 <template>
    
-    <slot :name="field.typeName" :field="field" :model-value="model" :set-model-value="setModelValue" :get-default-value="getDefaultValue" :error-messages="v.$error ? v.$errors.map(error => error.$message) : []">
+    <slot :name="field.fieldType" :field="field" :model-value="model" :set-model-value="setModelValue" :get-default-value="getDefaultValue" :error-messages="v.$error ? v.$errors.map(error => error.$message) : []">
     </slot>
 
 </template>
@@ -69,11 +69,11 @@ const rules = computed(() => {
 })
 
 function getDefaultValue(fieldInfo: FormField): any {
-    if(fieldInfo.typeName === 'list') {
+    if(fieldInfo.fieldType === 'list') {
         // returns the items default value
         return [getDefaultValue(fieldInfo.itemDefinition!)]
     }
-    if(fieldInfo.typeName === 'object') {
+    if(fieldInfo.fieldType === 'object') {
         // returns the objects default value
         let defaultValue: Record<string, any> = {}
         for(const property of fieldInfo.itemProperties ||[]) {
@@ -94,11 +94,11 @@ onMounted(() => {
         // use default value defined in default
         model.value = field.value.default;
     }
-    else if (field.value.typeName === 'object' && (model.value === null || model.value === undefined)) {
+    else if (field.value.fieldType === 'object' && (model.value === null || model.value === undefined)) {
         // prefill object by getDefaultValue
         model.value = getDefaultValue(field.value);
     }
-    else if (field.value.typeName === 'list' && (model.value === null || model.value === undefined)) {
+    else if (field.value.fieldType === 'list' && (model.value === null || model.value === undefined)) {
         // set default to []
         model.value = [];
     }
