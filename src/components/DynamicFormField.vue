@@ -69,20 +69,22 @@ const rules = computed(() => {
 })
 
 function getDefaultValue(fieldInfo: FormField): any {
-    if(fieldInfo.fieldType === 'list') {
-        // returns the items default value
-        return [getDefaultValue(fieldInfo.itemDefinition!)]
-    }
-    if(fieldInfo.fieldType === 'object') {
-        // returns the objects default value
-        let defaultValue: Record<string, any> = {}
-        for(const property of fieldInfo.itemProperties ||[]) {
-            defaultValue[property.name] = getDefaultValue(property);
+    function _getDefaultValue(fieldInfo: FormField): any {
+        if(fieldInfo.fieldType === 'list') {
+            // returns the items default value
+            return [_getDefaultValue(fieldInfo.itemDefinition!)]
         }
-        return defaultValue;
+        if(fieldInfo.fieldType === 'object') {
+            // returns the objects default value
+            let defaultValue: Record<string, any> = {}
+            for(const property of fieldInfo.itemProperties ||[]) {
+                defaultValue[property.name] = _getDefaultValue(property);
+            }
+            return defaultValue;
+        }
+        return JSON.parse(JSON.stringify(fieldInfo.default));
     }
-    //return default value for field
-    return fieldInfo.default;
+    return JSON.parse(JSON.stringify(_getDefaultValue(fieldInfo)));
 }
 
 
@@ -92,7 +94,7 @@ const v = useVuelidate(rules, state);
 onMounted(() => {
     if(field.value.default && (model.value === null || model.value === undefined)) {
         // use default value defined in default
-        model.value = field.value.default;
+        model.value = JSON.parse(JSON.stringify(field.value.default));
     }
     else if (field.value.fieldType === 'object' && (model.value === null || model.value === undefined)) {
         // prefill object by getDefaultValue
@@ -100,7 +102,7 @@ onMounted(() => {
     }
     else if (field.value.fieldType === 'list' && (model.value === null || model.value === undefined)) {
         // set default to []
-        model.value = [];
+        model.value = new Array();
     }
     
 
