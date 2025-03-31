@@ -1,6 +1,6 @@
 interface RenderCondition {
-    otherFieldName: string,
-    hasValue: boolean
+    propertyPath: string,
+    hasValue: any
 }
 
 export interface ValidationRule {
