@@ -1,6 +1,7 @@
 interface RenderCondition {
     propertyPath: string;
     hasValue: any;
+    renderConditions?: Array<RenderCondition>;
 }
 export interface ValidationRule {
     name: string;
@@ -51,7 +52,7 @@ export interface FormField {
     hint?: string;
     default?: any;
     rendered?: boolean;
-    renderCondition?: RenderCondition;
+    renderConditions?: Array<RenderCondition>;
     validationRules?: Array<ValidationRule>;
     itemProperties?: Array<FormField>;
     itemDefinition?: FormField;
