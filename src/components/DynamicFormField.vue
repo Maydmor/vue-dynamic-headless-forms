@@ -96,7 +96,7 @@ onMounted(() => {
         // use default value defined in default
         model.value = JSON.parse(JSON.stringify(field.value.default));
     }
-    else if (field.value.fieldType === 'object' && (model.value === null || model.value === undefined)) {
+    else if (field.value.fieldType === 'object' && (model.value === null || model.value === undefined || (typeof model.value === 'object' && Object.keys(model.value).length === 0))) {
         // prefill object by getDefaultValue
         model.value = getDefaultValue(field.value);
     }
