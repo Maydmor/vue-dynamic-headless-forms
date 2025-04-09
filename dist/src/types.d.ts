@@ -57,6 +57,7 @@ export interface FormField {
     itemProperties?: Array<FormField>;
     itemDefinition?: FormField;
     choices?: Array<any>;
+    fieldIndex?: number;
 }
 export {};
 //# sourceMappingURL=types.d.ts.map

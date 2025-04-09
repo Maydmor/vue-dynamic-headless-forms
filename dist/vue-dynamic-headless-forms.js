@@ -1,9 +1,9 @@
-import { defineComponent as T, mergeModels as y, useModel as M, toRefs as V, computed as n, onMounted as _, renderSlot as q, unref as u } from "vue";
-import { helpers as l, required as w, requiredIf as N, requiredUnless as F, minLength as O, maxLength as S, maxValue as J, minValue as b, sameAs as D } from "@vuelidate/validators";
-import j from "@vuelidate/core";
-const $ = /* @__PURE__ */ T({
+import { defineComponent as y, mergeModels as M, useModel as V, toRefs as _, computed as d, onMounted as q, renderSlot as w, unref as n } from "vue";
+import { helpers as a, required as N, requiredIf as F, requiredUnless as O, minLength as S, maxLength as J, maxValue as b, minValue as D, sameAs as j } from "@vuelidate/validators";
+import A from "@vuelidate/core";
+const U = /* @__PURE__ */ y({
   __name: "DynamicFormField",
-  props: /* @__PURE__ */ y({
+  props: /* @__PURE__ */ M({
     field: {},
     context: {}
   }, {
@@ -11,47 +11,48 @@ const $ = /* @__PURE__ */ T({
     modelModifiers: {}
   }),
   emits: ["update:modelValue"],
-  setup(o) {
-    const t = M(o, "modelValue"), g = o, { field: a, context: s } = V(g);
-    function c(r) {
-      t.value = r;
+  setup(s) {
+    const r = V(s, "modelValue"), u = s, { field: l, context: o } = _(u);
+    function h(t) {
+      r.value = t;
     }
-    const h = n(() => {
-      const r = {};
-      for (const e of a.value.validationRules || [])
-        console.debug("Add validation rule: ", e), e.name == "required" && (r.required = l.withMessage(e.errorText, w)), e.name == "required_if" && (r.requiredIf = l.withMessage(e.errorText, N(!!s.value[e.otherFieldName]))), e.name == "required_unless" && (r.requiredUnless = l.withMessage(e.errorText, F(!!s.value[e.otherFieldName]))), e.name == "min_length" && (r.minLength = l.withMessage(e.errorText, O(e.length))), e.name == "max_length" && (r.maxLength = l.withMessage(e.errorText, S(e.length))), e.name == "less_than" && (r.lessThan = l.withMessage(e.errorText, J(e.value))), e.name == "greater_than" && (r.greaterThan = l.withMessage(e.errorText, b(e.value))), e.name == "same_as" && (r.sameAs = l.withMessage(e.errorText, D(s.value[e.otherFieldName])));
-      return r;
-    }), p = n(() => ({
-      model: t.value
-    })), x = n(() => ({
-      model: { ...h.value }
+    const p = d(() => {
+      const t = {};
+      for (const e of l.value.validationRules || [])
+        console.debug("Add validation rule: ", e), e.name == "required" && (t.required = a.withMessage(e.errorText, N)), e.name == "required_if" && (t.requiredIf = a.withMessage(e.errorText, F(!!o.value[e.otherFieldName]))), e.name == "required_unless" && (t.requiredUnless = a.withMessage(e.errorText, O(!!o.value[e.otherFieldName]))), e.name == "min_length" && (t.minLength = a.withMessage(e.errorText, S(e.length))), e.name == "max_length" && (t.maxLength = a.withMessage(e.errorText, J(e.length))), e.name == "less_than" && (t.lessThan = a.withMessage(e.errorText, b(e.value))), e.name == "greater_than" && (t.greaterThan = a.withMessage(e.errorText, D(e.value))), e.name == "same_as" && (t.sameAs = a.withMessage(e.errorText, j(o.value[e.otherFieldName])));
+      return t;
+    }), x = d(() => ({
+      model: r.value
+    })), T = d(() => ({
+      model: { ...p.value }
     }));
-    function m(r) {
+    function m(t) {
       function e(i) {
         if (i.fieldType === "list")
           return [e(i.itemDefinition)];
         if (i.fieldType === "object") {
-          let f = {};
-          for (const v of i.itemProperties || [])
-            f[v.name] = e(v);
-          return f;
+          let v = {};
+          for (const c of i.itemProperties || [])
+            v[c.name] = e(c);
+          return v;
         }
         return JSON.parse(JSON.stringify(i.default));
       }
-      return JSON.parse(JSON.stringify(e(r)));
+      return JSON.parse(JSON.stringify(e(t)));
     }
-    const d = j(x, p);
-    return _(() => {
-      a.value.default && (t.value === null || t.value === void 0) ? t.value = JSON.parse(JSON.stringify(a.value.default)) : a.value.fieldType === "object" && (t.value === null || t.value === void 0 || typeof t.value == "object" && Object.keys(t.value).length === 0) ? t.value = m(a.value) : a.value.fieldType === "list" && (t.value === null || t.value === void 0) && (t.value = new Array());
-    }), (r, e) => q(r.$slots, u(a).fieldType, {
-      field: u(a),
-      modelValue: t.value,
-      setModelValue: c,
+    const f = A(T, x);
+    return q(() => {
+      l.value.default && (r.value === null || r.value === void 0) ? r.value = JSON.parse(JSON.stringify(l.value.default)) : l.value.fieldType === "object" && (r.value === null || r.value === void 0 || typeof r.value == "object" && Object.keys(r.value).length === 0) ? r.value = m(l.value) : l.value.fieldType === "list" && (r.value === null || r.value === void 0) && (r.value = new Array());
+    }), (t, e) => w(t.$slots, n(l).fieldType, {
+      field: n(l),
+      modelValue: r.value,
+      setModelValue: h,
       getDefaultValue: m,
-      errorMessages: u(d).$error ? u(d).$errors.map((i) => i.$message) : []
+      errorMessages: n(f).$error ? n(f).$errors.map((i) => i.$message) : []
     });
   }
-});
+}), g = 1e7, k = (s) => s.sort((r, u) => (r.fieldIndex || g) - (u.fieldIndex || g));
 export {
-  $ as DynamicFormField
+  U as DynamicFormField,
+  k as sortFields
 };
