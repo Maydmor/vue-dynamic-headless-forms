@@ -68,6 +68,7 @@ export interface FormField {
     validationRules?: Array<ValidationRule>,
     itemProperties?: Array<FormField>,
     itemDefinition?: FormField,
-    choices?: Array<any>
+    choices?: Array<any>,
+    fieldIndex?: number
 
 }
