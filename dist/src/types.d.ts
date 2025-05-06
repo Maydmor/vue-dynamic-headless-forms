@@ -52,6 +52,7 @@ export interface FormField {
     hint?: string;
     default?: any;
     rendered?: boolean;
+    style?: string;
     renderConditions?: Array<RenderCondition>;
     validationRules?: Array<ValidationRule>;
     itemProperties?: Array<FormField>;
