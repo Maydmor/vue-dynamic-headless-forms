@@ -1,4 +1,4 @@
-interface RenderCondition {
+export interface RenderCondition {
     propertyPath: string,
     hasValue: any,
     renderConditions?: Array<RenderCondition>

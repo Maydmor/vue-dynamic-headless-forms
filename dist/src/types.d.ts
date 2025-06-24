@@ -1,4 +1,4 @@
-interface RenderCondition {
+export interface RenderCondition {
     propertyPath: string;
     hasValue: any;
     renderConditions?: Array<RenderCondition>;
@@ -60,5 +60,4 @@ export interface FormField {
     choices?: Array<any>;
     fieldIndex?: number;
 }
-export {};
 //# sourceMappingURL=types.d.ts.map
