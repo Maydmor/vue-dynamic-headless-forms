@@ -70,6 +70,7 @@ export interface FormField {
     itemProperties?: Array<FormField>,
     itemDefinition?: FormField,
     choices?: Array<any>,
+    radios?: boolean,
     fieldIndex?: number
 
 }
