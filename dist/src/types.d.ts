@@ -58,6 +58,8 @@ export interface FormField {
     itemProperties?: Array<FormField>;
     itemDefinition?: FormField;
     choices?: Array<any>;
+    radios?: boolean;
+    inline?: boolean;
     fieldIndex?: number;
 }
 //# sourceMappingURL=types.d.ts.map
